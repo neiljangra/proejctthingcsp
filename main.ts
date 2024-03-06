@@ -150,7 +150,6 @@ let ControlBody = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
-myDart.setPosition(13, 68)
 ControlBody.setPosition(13, 68)
 ControlBody.sayText("Hi, I'm Yutong and you can use me to shoot darts at the targets later on!")
 let ask = game.askForString("Now what's your name?")
@@ -173,6 +172,7 @@ myDart = darts.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Player)
+myDart.setPosition(13, 68)
 myDart.controlWithArrowKeys()
 myDart.setTrace()
 forever(function () {
