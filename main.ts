@@ -3,13 +3,35 @@ namespace SpriteKind {
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     myDart.throwDart()
+    pause(1000)
+    myDart = darts.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . f f f . . . . . . . . . . . 
+        . . . . f f f 6 6 6 6 6 f . . . 
+        . . . . . f f 6 6 6 6 6 f f . . 
+        . . . . f f f 6 6 6 6 6 f . . . 
+        . . f f f . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.Player)
+    myDart.setPosition(13, 68)
+    myDart.controlWithArrowKeys()
+    myDart.setTrace()
 })
-sprites.onOverlap(SpriteKind.Player, SpriteKind.tomg, function (sprite, otherSprite) {
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     sprites.destroy(sprite)
-    sprites.destroy(otherSprite)
+    sprites.destroy(otherSprite, effects.disintegrate, 500)
     info.changeScoreBy(1)
 })
-let typehsit: Sprite = null
+let strawberry: Sprite = null
 let myDart: Dart = null
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -178,7 +200,7 @@ myDart.setPosition(13, 68)
 myDart.controlWithArrowKeys()
 myDart.setTrace()
 forever(function () {
-    typehsit = sprites.create(img`
+    strawberry = sprites.create(img`
         . . . . . . . 6 . . . . . . . . 
         . . . . . . 8 6 6 . . . 6 8 . . 
         . . . e e e 8 8 6 6 . 6 7 8 . . 
@@ -195,7 +217,7 @@ forever(function () {
         e e e e 2 e 2 2 e e e c . . . . 
         e e e 2 e e c e c c c . . . . . 
         . c c c c c c c . . . . . . . . 
-        `, SpriteKind.tomg)
-    typehsit.setPosition(145, randint(30, 120))
-    pause(2000)
+        `, SpriteKind.Food)
+    strawberry.setPosition(145, randint(30, 120))
+    pause(2500)
 })
