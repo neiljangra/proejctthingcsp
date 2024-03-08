@@ -2,6 +2,9 @@ namespace SpriteKind {
     export const tomg = SpriteKind.create()
     export const Dart = SpriteKind.create()
 }
+function hi (text: string) {
+    return "Ok " + text + ", have fun in this game!"
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     myDart.throwDart()
     pause(1000)
@@ -38,9 +41,8 @@ sprites.onOverlap(SpriteKind.Dart, SpriteKind.Food, function (sprite, otherSprit
     info.changeScoreBy(1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    sprites.destroy(sprite)
+    info.changeLifeBy(-1)
     sprites.destroy(otherSprite, effects.disintegrate, 500)
-    game.gameOver(false)
 })
 let asteroid: Sprite = null
 let strawberry: Sprite = null
@@ -168,6 +170,7 @@ scene.setBackgroundImage(img`
     8888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888
     `)
 info.setScore(0)
+info.setLife(3)
 let ControlBody = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
@@ -188,8 +191,11 @@ let ControlBody = sprites.create(img`
     `, SpriteKind.Player)
 ControlBody.setPosition(13, 68)
 ControlBody.sayText("Hi, I'm Yutong and you can use me to shoot darts at the targets later on!")
-let ask = game.askForString("Now what's your name?")
-ControlBody.sayText("Ok " + ask + ", have fun in this game!")
+hi(game.askForString("Now what's your name?"))
+ControlBody.sayText(hi("abc"))
+if (hi("abc") == "Neil" && 1 == 1) {
+    ControlBody.sayText("That's crazyyyy")
+}
 myDart = darts.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
